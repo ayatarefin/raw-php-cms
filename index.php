@@ -1,3 +1,4 @@
+<?php include "includes/config.php" ?>
 <?php include "includes/header.php" ?>
     <!-- Navigation -->
 <?php include "includes/nav.php" ?>
@@ -9,29 +10,36 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
-
-                <h1 class="page-header">
-                    Page Heading
-                    <small>Secondary Text</small>
-                </h1>
-
-                <!-- First Blog Post -->
+            <?php
+                    $query1="SELECT * FROM blogs";
+                    $blog_all_collumns=mysqli_query($connection, $query1);
+                    while($row=mysqli_fetch_assoc($blog_all_collumns)){
+                        $blog_title=$row['blog_title'];
+                        $blog_author=$row['blog_author'];
+                        $blog_date=$row['blog_date'];
+                        $blog_image=$row['blog_image'];
+                        $blog_content=$row['blog_content'];
+                        ?>
+                        <!-- <h1 class="page-header">
+                    Welcome to CineHub
+                    <small>Below are some popular reviews and Movie lists</small>
+                </h1> -->
                 <h2>
-                    <a href="#">Blog Post Title</a>
+                    <a href="#"><?php echo $blog_title ?></a>
                 </h2>
                 <p class="lead">
-                    by <a href="index.php">Start Bootstrap</a>
+                    by <a href="index.php"><?php echo $blog_author ?></a>
                 </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on  <?php echo $blog_date ?></p>
                 <hr>
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                <img class="img-responsive" src="images/<?php echo $blog_image ?>" alt="">
                 <hr>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+                <p><?php echo $blog_content ?></p>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
-
-                <!-- Pager -->
+                    <?php } ?>
+                                    <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
@@ -52,4 +60,4 @@
         <hr>
 
         <!-- Footer -->
-        <?php include "includes/footer.php" ?>
+        <?php include "includes/footer.php"?>
