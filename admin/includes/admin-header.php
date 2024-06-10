@@ -1,3 +1,4 @@
+<?php include "../includes/config.php" ?>
 <head>
 
     <meta charset="utf-8">

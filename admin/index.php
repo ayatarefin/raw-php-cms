@@ -1,6 +1,8 @@
-<?php include "../includes/config.php" ?>
 <?php include "includes/admin-header.php" ?>
 <div id="wrapper">
+
+
+    <!-- php if($connection) echo "yolo" -->
 
     <!-- Navigation -->
     <?php include "includes/admin-nav.php" ?>
@@ -11,10 +13,6 @@
 
             <!-- Page Heading -->
             <?php include "includes/admin-home.php" ?>
-            <?php  if($connection){
-                 echo "db is connected";
-             }
-            ?>
             <!-- /.row -->
 
         </div>
