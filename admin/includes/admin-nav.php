@@ -48,7 +48,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="genres.php"><i class="fa fa-fw fa-wrench"></i> Manage Genres</a>
                     </li>
                     <li>
