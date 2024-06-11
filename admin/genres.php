@@ -50,28 +50,6 @@
                         </form>
 
                         <!-- Edit field -->
-                        <form action="#" method="post">
-                            <!--edit option -->
-                            <?php
-                                if(isset($_GET['update'])){
-                                    $genre_id =$_GET['update'];
-                                // Retrieve the genres from the database
-                                $query = "SELECT * FROM genres WHERE genre_id ={$genre_id}";
-                                $show_genre = mysqli_query($connection, $query);
-                                // Display the genres in the table
-                                while ($row = mysqli_fetch_assoc($show_genre)) {
-                                    $genre_id = $row['genre_id'];
-                                    $genre_name = $row['genre_name'];
-                                    ?>
-                                    <div class="form-group">
-                                    <label for="genre-title">Update Genre</label>
-                                    <input value="<?php if(isset($genre_name)){echo $genre_name;}?>" name="genre_title" type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                    <input class="btn btn-primary" type="submit" name="update" value="Update Genre">
-                                    </div>
-                              <?php  }} ?>
-                        </form>
                     </div>
 
                     <!-- add table -->
@@ -84,7 +62,6 @@
                                     <th>Options</th>
                                 </tr>
                             </thead>
-                            <>
                                 <?php
                                 // Retrieve the genres from the database
                                 $query = "SELECT * FROM genres";
@@ -103,13 +80,10 @@
                                     echo "<td>$genre_id</td>";
                                     echo "<td>$genre_name</td>";
                                     echo "<td><a href='genres.php?delete={$genre_id}'>Delete</a></td>";
-                                    echo "<td><a href='genres.php?update={$genre_id}'>Update</a></td>";
+                                    echo "<td><a href='update-genres.php?update={$genre_id}'>Update</a></td>";
                                     echo "</tr>";
                                 }
                                 ?>
-                                
-                                
-
                                 <!--delete option -->
                                 <?php
                                 if(isset($_GET['delete'])){
