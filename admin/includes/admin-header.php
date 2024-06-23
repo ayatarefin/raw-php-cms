@@ -1,5 +1,6 @@
 <?php ob_start(); ?>
 <?php include "../includes/config.php" ?>
+<?php include "function.php" ?>
 <head>
 
     <meta charset="utf-8">
