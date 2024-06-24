@@ -44,7 +44,7 @@
                                 <a href="blog-table.php">See Blogs</a>
                             </li>
                             <li>
-                                <a href="add-blog.php">Add Blogs</a>
+                                <a href="#">Add Blogs</a>
                             </li>
                         </ul>
                     </li>

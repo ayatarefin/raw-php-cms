@@ -4,9 +4,10 @@
             <th>Id</th>
             <th>Blog Title</th>
             <th>Blog Author</th>
-            <th>Blog Content</th>
             <th>Blog Image</th>
+            <th>Blog Tags</th>
             <th>Blog Comments</th>
+            <th>Blog Status</th>
             <th>Blog Date</th>
 
         </tr>

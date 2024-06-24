@@ -20,8 +20,8 @@
                      }
                      switch($source){
 
-                        case '12';
-                        echo "its 12";
+                        case 'add post';
+                        include "includes/add-blog.php";
                         break;
 
                         case '132';
