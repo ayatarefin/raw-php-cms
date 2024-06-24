@@ -41,10 +41,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#blogs"><i class="fa fa-fw fa-arrows-v"></i> Manage Blogs <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="blogs" class="collapse">
                             <li>
-                                <a href="#">See Blogs</a>
+                                <a href="blog-table.php">See Blogs</a>
                             </li>
                             <li>
-                                <a href="#">Add Blogs</a>
+                                <a href="add-blog.php">Add Blogs</a>
                             </li>
                         </ul>
                     </li>

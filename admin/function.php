@@ -102,4 +102,45 @@ function updateGenre(){
         }
     }
 
+
+    // Blogs releted
+
+    function showBlogsInTable(){
+        global $connection;
+    // Retrieve the genres from the database
+    $query = "SELECT * FROM blogs";
+    $blogs_list = mysqli_query($connection, $query);
+
+    // Check for query errors
+    if (!$blogs_list) {
+        die('QUERY FAILED: ' . mysqli_error($connection));
+    }
+
+    // Display the genres in the table
+    while ($row = mysqli_fetch_assoc($blogs_list)) {
+        $blogs_id = $row['blog_id'];
+        $blogs_title = $row['blog_title'];
+        $blogs_author = $row['blog_author'];
+        $blogs_content = $row['blog_content'];
+        $blogs_tags = $row['blog_tags'];
+        $blogs_status = $row['blog_status'];
+        $blogs_image = $row['blog_image'];
+        $comment_count = $row['blog_comment_count'];
+        $blog_date =$row['blog_date'];
+        echo "<tr>";
+        echo "<td>$blogs_id</td>";
+        echo "<td>$blogs_author</td>";
+        echo "<td>$blogs_title</td>";
+        echo "<td><img width='100' src='../images/$blogs_image' alt='image'></td>";
+        echo "<td>$blogs_tags</td>";
+        echo "<td>$comment_count</td>";
+        echo "<td>$blogs_status</td>";
+        echo "<td>$$blog_date</td>";
+        echo "<td><a href='genres.php?delete={$blogs_id}'>Delete</a></td>";
+        echo "<td><a href='update-genres.php?update={$blogs_id}'>Update</a></td>";
+        echo "</tr>";
+    }
+
+    }
+
     ?>
