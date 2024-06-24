@@ -138,7 +138,7 @@ function showBlogsInTable()
         echo "<td>$comment_count</td>";
         echo "<td>$blogs_status</td>";
         echo "<td>$blog_date</td>";
-        echo "<td><a href='genres.php?delete={$blogs_id}'>Delete</a></td>";
+        echo "<td><a href='blog-table.php?delete={$blogs_id}'>Delete</a></td>";
         echo "<td><a href='update-genres.php?update={$blogs_id}'>Update</a></td>";
         echo "</tr>";
     }
@@ -183,10 +183,10 @@ function deleteBlog()
 {
     global $connection;
     if (isset($_GET['delete'])) {
-        $movie_genre_id = $_GET['delete'];
-        $query = "DELETE FROM genres WHERE genre_id={$movie_genre_id}";
+        $movie_blog_id = $_GET['delete'];
+        $query = "DELETE FROM blogs WHERE blog_id={$movie_blog_id}";
         $delete_query = mysqli_query($connection, $query);
-        header("location: genres.php");
+        header("location: blog-table.php");
     }
 }
 

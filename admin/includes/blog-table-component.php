@@ -14,6 +14,6 @@
     </thead>
     <?php showBlogsInTable(); ?>
     <!--delete option -->
-    <?php deleteGenre(); ?>
+    <?php deleteBlog(); ?>
     </tbody>
 </table>
