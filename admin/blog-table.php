@@ -20,16 +20,12 @@
                      }
                      switch($source){
 
-                        case 'add post';
+                        case 'add_blog';
                         include "includes/add-blog.php";
                         break;
 
-                        case '132';
-                        echo "its 132";
-                        break;
-
-                        case '122';
-                        echo "its 122";
+                        case 'update_blog';
+                        include "includes/update-blog.php";
                         break;
 
                         default:

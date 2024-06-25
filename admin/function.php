@@ -88,7 +88,7 @@ function updateGenre()
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" name="update" value="Update Genre">
             </div>
-<?php  }
+        <?php  }
     }
 }
 
@@ -139,12 +139,13 @@ function showBlogsInTable()
         echo "<td>$blogs_status</td>";
         echo "<td>$blog_date</td>";
         echo "<td><a href='blog-table.php?delete={$blogs_id}'>Delete</a></td>";
-        echo "<td><a href='update-genres.php?update={$blogs_id}'>Update</a></td>";
+        echo "<td><a href='blog-table.php?source=update_blog&b_id={$blogs_id}'>Update</a></td>";
         echo "</tr>";
     }
 }
 
-function confirmQuery($result){
+function confirmQuery($result)
+{
     global $connection;
     if (!$result) {
         die('QUERY FAILED: ' . mysqli_error($connection));
@@ -152,7 +153,8 @@ function confirmQuery($result){
         echo "Blogs added successfully!";
     }
 }
-function addBlog(){
+function addBlog()
+{
     global $connection;
 
     if (isset($_POST['create_blog'])) {
@@ -170,13 +172,12 @@ function addBlog(){
         move_uploaded_file($blog_image_temp, "../images/$blog_image");
 
         // Correct the SQL query by adding the missing closing quote and parentheses
-        $query = "INSERT INTO blogs (blog_genre_id, blog_title, blog_author, blog_image, blog_content, blog_tags, blog_date, blog_comment_count, blog_status) VALUES ({$blog_genre_id },'{$blog_title}','{$blog_author}','{$blog_image}','{$blog_content}','{$blog_tags}',now(),'{$blog_comment_count}','{$blog_status}')";
+        $query = "INSERT INTO blogs (blog_genre_id, blog_title, blog_author, blog_image, blog_content, blog_tags, blog_date, blog_comment_count, blog_status) VALUES ({$blog_genre_id},'{$blog_title}','{$blog_author}','{$blog_image}','{$blog_content}','{$blog_tags}',now(),'{$blog_comment_count}','{$blog_status}')";
 
         // Execute the query and handle any errors
         $create_blog_query = mysqli_query($connection, $query);
 
         confirmQuery($create_blog_query);
-
     }
 }
 function deleteBlog()
@@ -187,6 +188,101 @@ function deleteBlog()
         $query = "DELETE FROM blogs WHERE blog_id={$movie_blog_id}";
         $delete_query = mysqli_query($connection, $query);
         header("location: blog-table.php");
+    }
+}
+
+function updateBlog()
+{
+    global $connection;
+    if (isset($_GET['b_id'])) {
+        $the_blog_id = $_GET['b_id'];
+        // Retrieve the genres from the database
+        $query = "SELECT * FROM blogs WHERE blog_id ={$the_blog_id}";
+        $show_blogs_by_id = mysqli_query($connection, $query);
+        // Display the genres in the table
+        while ($row = mysqli_fetch_assoc($show_blogs_by_id)) {
+            $blogs_genre_id = $row['blog_genre_id'];
+            $blogs_title = $row['blog_title'];
+            $blogs_author = $row['blog_author'];
+            $blogs_content = $row['blog_content'];
+            $blogs_tags = $row['blog_tags'];
+            $blogs_status = $row['blog_status'];
+            $blogs_image = $row['blog_image'];
+        ?>
+                        <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="genre-title">Update Genre</label>
+                    <input value="<?php echo $blogs_genre_id; ?>" name="blog_genre_id" type="text" class="form-control" id="blogs-genre-title">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="blog-title">Update Title</label>
+                    <input value="<?php echo $blogs_title; ?>" name="blog_title" type="text" class="form-control" id="blog-title">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="blog-author">Update Author</label>
+                    <input value="<?php echo $blogs_author; ?>" name="blog_author" type="text" class="form-control" id="blog-author">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="blog-status">Update Blog Status</label>
+                    <input value="<?php echo $blogs_status; ?>" name="blog_status" type="text" class="form-control" id="blog-status">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="blog-image">Update New Image</label>
+                    <input name="blog_image" type="file" class="form-control" id="blog-image">
+                    <?php if ($blogs_image): ?>
+                        <img src="../images/<?php echo $blogs_image; ?>" alt="Blog Image" style="max-width: 100%; margin-top: 10px;">
+                    <?php endif; ?>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="blog-content">Update Content</label>
+                    <textarea class="form-control" name="blog_content" id="blog-content" cols="30" rows="10"><?php echo $blogs_content; ?></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="blog-tags">Update tags</label>
+                    <input value="<?php echo $blogs_tags; ?>" name="blog_tags" type="text" class="form-control" id="blog-tags">
+                </div>
+            </div>
+            <?php
+            if (isset($_POST['update_blog'])) {
+                $update_blog_title = $_POST['blog_title'];
+                $update_blog_author = $_POST['blog_author'];
+                $update_blog_genre_id = $_POST['blog_genre_id'];
+                $update_blog_status = $_POST['blog_status'];
+                $update_blog_image = $_FILES['blog_image']['name'];
+                $update_blog_image_temp = $_FILES['blog_image']['tmp_name'];
+                $update_blog_tags = $_POST['blog_tags'];
+                $update_blog_content = $_POST['blog_content'];
+                $update_blog_date = date('d-m-y');
+                $update_blog_comment_count = 4;
+
+                move_uploaded_file($update_blog_image_temp, "../images/$update_blog_image");
+
+                $query = "UPDATE blogs SET 
+                blog_genre_id = '{$update_blog_genre_id}', 
+                blog_title = '{$update_blog_title}', 
+                blog_author = '{$update_blog_author}', 
+                blog_image = '{$update_blog_image}', 
+                blog_content = '{$update_blog_content}', 
+                blog_tags = '{$update_blog_tags}', 
+                blog_date = now(), 
+                blog_comment_count = '{$update_blog_comment_count}', 
+                blog_status = '{$update_blog_status}' 
+                WHERE blog_id = {$the_blog_id}";
+                $update_blog_query = mysqli_query($connection, $query);
+                if (!$update_blog_query) {
+                    die("QUERY FAILED" . mysqli_error($connection));
+                }
+                header("location: blog-table.php");
+            }
+            ?>
+            <div class="form-group col-md-6">
+                <input class="btn btn-primary" type="submit" name="update_blog" value="Update Genre">
+            </div>
+<?php  }
     }
 }
 
