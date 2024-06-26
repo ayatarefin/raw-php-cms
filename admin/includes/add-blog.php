@@ -5,8 +5,21 @@
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="genre-title">Add Genre</label>
-                        <input name="blog_genre_id" type="text" class="form-control" id="genre-title">
+                        <label for="select-genre">Select Genre</label>
+                        <select name="blog_genre_id" id="select-genre" class="form-control">
+                            <?php 
+                            $query = "SELECT * FROM genres";
+                            $select_genres = mysqli_query($connection, $query);
+
+                            confirmQuery($select_genres);
+
+                            while($row =mysqli_fetch_assoc($select_genres)){
+                                $genre_id = $row['genre_id'];
+                                $genre_title = $row['genre_name'];
+                                echo "<option value='{$genre_id}'>{$genre_title}</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="blog-title">Title</label>
@@ -34,11 +47,11 @@
                     <textarea class="form-control" name="blog_content" id="blog-content" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="blog-tags">Add tags</label>
+                    <label for="blog-tags">Add Tags</label>
                     <input name="blog_tags" type="text" class="form-control" id="blog-tags">
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" name="create_blog" value="Publish blog">
+                    <input class="btn btn-primary" type="submit" name="create_blog" value="Publish Blog">
                 </div>
             </form>
         </div>
