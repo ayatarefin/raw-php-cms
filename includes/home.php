@@ -16,7 +16,7 @@
         $blog_content = $row['blog_content'];
         ?>
         <h2>
-            <a href="#"><?php echo $blog_title ?></a>
+            <a href="../includes/blog.php"><?php echo $blog_title ?></a>
         </h2>
         <p class="lead">
             by <a href="index.php"><?php echo $blog_author ?></a>
