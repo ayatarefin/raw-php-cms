@@ -26,21 +26,11 @@
                                 <?php 
                                 while($row=mysqli_fetch_assoc($genre_list_sidebar)){
                                     $genre_name=$row['genre_name'];
+                                    $genre_id=$row['genre_id'];
                                     echo "<li>
-                                    <a href='#'>$genre_name</a>
+                                    <a href='genre.php?t_genre_id=$genre_id'>$genre_name</a>
                                     </li>";
                                 }?>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
                             </ul>
                         </div>
                         <!-- /.col-lg-6 -->

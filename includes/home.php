@@ -24,10 +24,10 @@
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $blog_date ?></p>
         <hr>
-        <img class="img-responsive" src="images/<?php echo $blog_image ?>" alt="">
+        <a href="blog.php?b_id=<?php echo $blog_id;?>"><img class="img-responsive" src="images/<?php echo $blog_image ?>" alt=""></a>
         <hr>
         <p><?php echo $blog_content ?></p>
-        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="blog.php?b_id=<?php echo $blog_id;?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
         <hr>
     <?php } ?>
