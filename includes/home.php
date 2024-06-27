@@ -9,6 +9,7 @@
     $query1 = "SELECT * FROM blogs";
     $blog_all_collumns = mysqli_query($connection, $query1);
     while ($row = mysqli_fetch_assoc($blog_all_collumns)) {
+        $blog_id = $row['blog_id'];
         $blog_title = $row['blog_title'];
         $blog_author = $row['blog_author'];
         $blog_date = $row['blog_date'];
@@ -16,7 +17,7 @@
         $blog_content = $row['blog_content'];
         ?>
         <h2>
-            <a href="../includes/blog.php"><?php echo $blog_title ?></a>
+            <a href="blog.php?b_id=<?php echo $blog_id;?>"><?php echo $blog_title ?></a>
         </h2>
         <p class="lead">
             by <a href="index.php"><?php echo $blog_author ?></a>
