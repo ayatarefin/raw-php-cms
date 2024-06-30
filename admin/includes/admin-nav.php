@@ -52,7 +52,7 @@
                         <a href="genres.php"><i class="fa fa-fw fa-wrench"></i> Manage Genres</a>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Manage Comments</a>
+                        <a href="comment-table.php"><i class="fa fa-fw fa-file"></i> Manage Comments</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#user"><i class="fa fa-fw fa-arrows-v"></i> Manage Users<i class="fa fa-fw fa-caret-down"></i></a>
