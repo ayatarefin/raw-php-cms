@@ -39,25 +39,27 @@
             die;
         }
         while ($row = mysqli_fetch_assoc($comment_blog_list)) {
+            $blog_id= $row['blog_id'];
             $blog_title = $row['blog_title'];
-        echo "<td>$blog_title</td>";
+        echo "<td><a href='../blog.php?b_id=$blog_id'>$blog_title</a></td>";
 
         }
         echo "<td>$comment_status</td>";
         echo "<td><a href=''>Approved</a></td>";
-        echo "<td><a href=''>Deleted</a></td>";
+        echo "<td><a href='comment-table.php?delete_comment={$comment_id}'>Delete</a></td>";
         echo "</tr>";
+    }    
+    ?>
+    <!--delete option -->
+    <?php
+    if (isset($_GET['delete_comment'])) {
+        $movie_comment_id = $_GET['delete_comment'];
+        $query = "DELETE FROM comments WHERE comment_id={$movie_comment_id}";
+        $delete_query = mysqli_query($connection, $query);
+        header("location: comment-table.php");
     }
-
-
-    
-    
-    
-    
     
     
     ?>
-    <!--delete option -->
-    <?php deleteBlog(); ?>
     </tbody>
 </table>

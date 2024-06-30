@@ -13,7 +13,7 @@
                     </h1>
                     <!-- add table -->
                      <?php
-                     if(isset($_GET['source'])){
+                     if(isset($_GET['comment_source'])){
                         $source= $_GET['source'];
                      } else{
                         $source='';
