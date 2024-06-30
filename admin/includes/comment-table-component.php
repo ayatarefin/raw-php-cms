@@ -8,7 +8,7 @@
             <th>Date</th>
             <th>Commented in</th>
             <th>Comment Status</th>
-            <th>Approval</th>
+            <th>Set Status</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -45,8 +45,11 @@
 
         }
         echo "<td>$comment_status</td>";
-        echo "<td><a href=''>Approved</a></td>";
-        echo "<td><a href='comment-table.php?delete_comment={$comment_id}'>Delete</a></td>";
+        echo "<td>
+            <a href='comment-table.php?approve_comment={$comment_id}'><button type='button' class='btn btn-primary'>Approve</button></a>
+            <a href='comment-table.php?unapprove_comment={$comment_id}'><button type='button' class='btn btn-secondary'>Unapprove</button></a>
+              </td>";
+        echo "<td><a href='comment-table.php?delete_comment={$comment_id}'><button type='button' class='btn btn-danger'>Delete</button></a></td>";
         echo "</tr>";
     }    
     ?>
@@ -58,8 +61,23 @@
         $delete_query = mysqli_query($connection, $query);
         header("location: comment-table.php");
     }
-    
-    
     ?>
+    <!-- Approval and Unapproval -->
+     <?php
+     if (isset($_GET['approve_comment'])){
+        $approve_comment = $_GET['approve_comment'];
+        $query = "UPDATE comments SET comment_status='Approved' WHERE comment_id = $approve_comment";
+        $approve_comment_query = mysqli_query($connection,$query);
+        header("location: comment-table.php");
+     }
+     ?>
+     <?php
+          if (isset($_GET['unapprove_comment'])){
+            $unapprove_comment = $_GET['unapprove_comment'];
+            $query = "UPDATE comments SET comment_status='Unapproved' WHERE comment_id = $unapprove_comment";
+            $unapprove_comment_query = mysqli_query($connection,$query);
+            header("location: comment-table.php");
+         }
+        ?>
     </tbody>
 </table>
