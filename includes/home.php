@@ -14,7 +14,7 @@
         $blog_author = $row['blog_author'];
         $blog_date = $row['blog_date'];
         $blog_image = $row['blog_image'];
-        $blog_content = $row['blog_content'];
+        $blog_content = substr( $row['blog_content'],0,350);
         ?>
         <h2>
             <a href="blog.php?b_id=<?php echo $blog_id;?>"><?php echo $blog_title ?></a>
